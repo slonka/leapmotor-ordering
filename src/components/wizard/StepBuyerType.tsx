@@ -5,7 +5,7 @@ import { useTranslation } from '@/lib/i18n';
 import Card from '@/components/ui/Card';
 
 export default function StepBuyerType() {
-  const { buyerType, setBuyerType, language } = useOrderStore();
+  const { buyerType, setBuyerType, nextStep, language } = useOrderStore();
   const { t } = useTranslation(language);
 
   return (
@@ -15,7 +15,10 @@ export default function StepBuyerType() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
         <Card
           selected={buyerType === 'individual'}
-          onClick={() => setBuyerType('individual')}
+          onClick={() => {
+            setBuyerType('individual');
+            setTimeout(() => nextStep(), 300);
+          }}
           className="p-8 text-center"
         >
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-50 flex items-center justify-center">
@@ -29,7 +32,10 @@ export default function StepBuyerType() {
 
         <Card
           selected={buyerType === 'company'}
-          onClick={() => setBuyerType('company')}
+          onClick={() => {
+            setBuyerType('company');
+            setTimeout(() => nextStep(), 300);
+          }}
           className="p-8 text-center"
         >
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-50 flex items-center justify-center">

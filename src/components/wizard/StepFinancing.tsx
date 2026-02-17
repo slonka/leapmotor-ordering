@@ -19,7 +19,7 @@ const FINANCING_OPTIONS: FinancingCard[] = [
 ];
 
 export default function StepFinancing() {
-  const { financing, setFinancing, buyerType, model, color, accessories, language } =
+  const { financing, setFinancing, nextStep, buyerType, model, color, accessories, language } =
     useOrderStore();
   const { t } = useTranslation(language);
 
@@ -85,7 +85,10 @@ export default function StepFinancing() {
             <Card
               key={opt.id}
               selected={isSelected}
-              onClick={() => setFinancing({ option: opt.id })}
+              onClick={() => {
+                setFinancing({ option: opt.id });
+                setTimeout(() => nextStep(), 300);
+              }}
               className="p-5"
             >
               <h3 className="font-semibold text-gray-900 mb-1">

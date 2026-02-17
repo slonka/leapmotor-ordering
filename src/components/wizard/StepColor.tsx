@@ -6,7 +6,7 @@ import { COLORS, formatPrice } from '@/lib/data';
 import Card from '@/components/ui/Card';
 
 export default function StepColor() {
-  const { color, setColor, language } = useOrderStore();
+  const { color, setColor, nextStep, language } = useOrderStore();
   const { t } = useTranslation(language);
 
   return (
@@ -18,7 +18,10 @@ export default function StepColor() {
           <Card
             key={c.id}
             selected={color === c.id}
-            onClick={() => setColor(c.id)}
+            onClick={() => {
+              setColor(c.id);
+              setTimeout(() => nextStep(), 300);
+            }}
             className="p-4 text-center"
           >
             <div

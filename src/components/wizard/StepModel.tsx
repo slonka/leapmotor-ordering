@@ -7,7 +7,7 @@ import { MODELS, formatPrice } from '@/lib/data';
 import Card from '@/components/ui/Card';
 
 export default function StepModel() {
-  const { model, setModel, language } = useOrderStore();
+  const { model, setModel, nextStep, language } = useOrderStore();
   const { t } = useTranslation(language);
 
   return (
@@ -20,7 +20,11 @@ export default function StepModel() {
             key={m.id}
             selected={model === m.id}
             disabled={!m.available}
-            onClick={() => m.available && setModel(m.id)}
+            onClick={() => {
+              if (!m.available) return;
+              setModel(m.id);
+              setTimeout(() => nextStep(), 300);
+            }}
             className="relative overflow-hidden p-4 lg:p-6"
           >
             {!m.available && (
