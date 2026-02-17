@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useOrderStore } from '@/store/useOrderStore';
 import { useTranslation, type TranslationKey } from '@/lib/i18n';
 import { MODELS, COLORS, ACCESSORIES, formatPrice } from '@/lib/data';
@@ -25,6 +26,18 @@ export default function PriceSummary() {
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-4 lg:p-5">
       <h3 className="font-semibold text-gray-900 mb-3">{t('price.total')}</h3>
+
+      {colorData && (
+        <div className="relative aspect-[16/9] mb-3">
+          <Image
+            src={colorData.image}
+            alt={t(colorData.nameKey as TranslationKey)}
+            fill
+            className="object-contain"
+            sizes="300px"
+          />
+        </div>
+      )}
 
       <div className="space-y-2 text-sm">
         <div className="flex justify-between">

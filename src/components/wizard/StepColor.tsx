@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useOrderStore } from '@/store/useOrderStore';
 import { useTranslation, type TranslationKey } from '@/lib/i18n';
 import { COLORS, formatPrice } from '@/lib/data';
@@ -22,12 +23,17 @@ export default function StepColor() {
               setColor(c.id);
               setTimeout(() => nextStep(), 300);
             }}
-            className="p-4 text-center"
+            className="p-3 text-center"
           >
-            <div
-              className="w-full aspect-square rounded-lg mb-3 border border-gray-200"
-              style={{ backgroundColor: c.hex }}
-            />
+            <div className="relative aspect-[16/9] mb-3">
+              <Image
+                src={c.image}
+                alt={t(c.nameKey as TranslationKey)}
+                fill
+                className="object-contain"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              />
+            </div>
 
             <h3 className="font-semibold text-gray-900 mb-1">
               {t(c.nameKey as TranslationKey)}

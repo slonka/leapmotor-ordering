@@ -77,6 +77,7 @@ export interface ColorOption {
   nameKey: string;
   hex: string;
   surcharge: number;
+  image: string;
 }
 
 export interface AccessoryOption {
