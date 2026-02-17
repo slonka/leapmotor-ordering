@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useOrderStore, WIZARD_STEPS } from '@/store/useOrderStore';
 import { useTranslation, type TranslationKey } from '@/lib/i18n';
 import LanguageToggle from '@/components/ui/LanguageToggle';
@@ -51,6 +52,17 @@ export default function WizardShell() {
   const { t } = useTranslation(store.language);
   const currentStepId = WIZARD_STEPS[store.currentStep];
   const isSummary = currentStepId === 'summary';
+  const canAdvanceNow = canAdvance(store.currentStep, store);
+
+  const [idle, setIdle] = useState(false);
+
+  useEffect(() => {
+    setIdle(false);
+    if (!canAdvanceNow) return;
+
+    const timer = setTimeout(() => setIdle(true), 3000);
+    return () => clearTimeout(timer);
+  }, [store.currentStep, canAdvanceNow]);
 
   const renderStep = () => {
     switch (currentStepId) {
@@ -179,7 +191,8 @@ export default function WizardShell() {
                 )}
                 <Button
                   onClick={store.nextStep}
-                  disabled={!canAdvance(store.currentStep, store)}
+                  disabled={!canAdvanceNow}
+                  className={idle && canAdvanceNow ? 'animate-pulse-attention' : ''}
                 >
                   {store.currentStep === WIZARD_STEPS.length - 2
                     ? t('nav.finish')
