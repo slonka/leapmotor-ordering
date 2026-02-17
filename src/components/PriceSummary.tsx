@@ -5,7 +5,7 @@ import { useOrderStore } from '@/store/useOrderStore';
 import { useTranslation, type TranslationKey } from '@/lib/i18n';
 import { MODELS, COLORS, ACCESSORIES, formatPrice } from '@/lib/data';
 
-export default function PriceSummary() {
+export default function PriceSummary({ compact = false }: { compact?: boolean } = {}) {
   const { model, color, accessories, language } = useOrderStore();
   const { t } = useTranslation(language);
 
@@ -22,6 +22,30 @@ export default function PriceSummary() {
   const total = basePrice + colorSurcharge + accessoriesTotal;
 
   if (!model) return null;
+
+  if (compact) {
+    return (
+      <div className="flex items-center gap-2">
+        {colorData && (
+          <div className="relative w-12 h-7 shrink-0">
+            <Image
+              src={colorData.image}
+              alt={t(colorData.nameKey as TranslationKey)}
+              fill
+              className="object-contain"
+              sizes="48px"
+            />
+          </div>
+        )}
+        <div className="flex items-baseline gap-1.5 text-sm">
+          <span className="text-gray-500">{t('price.total')}:</span>
+          <span className="font-semibold text-emerald-600">
+            {formatPrice(total)} {t('price.currency')}
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-4 lg:p-5">

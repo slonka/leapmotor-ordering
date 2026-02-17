@@ -181,15 +181,15 @@ export default function WizardShell() {
       {!isSummary && (
         <div className="sticky bottom-0 bg-white border-t border-gray-200 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col-reverse items-center gap-3 lg:flex-row lg:justify-between">
               {/* Mobile price summary */}
               {store.model && (
                 <div className="lg:hidden">
-                  <PriceSummary />
+                  <PriceSummary compact />
                 </div>
               )}
 
-              <div className="flex items-center gap-3 ml-auto">
+              <div className="flex items-center gap-3 lg:ml-auto">
                 {store.currentStep > 0 && (
                   <Button variant="secondary" onClick={store.prevStep}>
                     {t('nav.back')}
