@@ -120,8 +120,9 @@ export default function WizardShell() {
               {WIZARD_STEPS.map((step, index) => {
                 if (step === 'summary') return null;
                 const isActive = index === store.currentStep;
+                const isNext = index === store.currentStep + 1 && canAdvanceNow;
                 const isVisited = index <= store.highestStepReached && !isActive;
-                const isClickable = index <= store.highestStepReached && !isActive;
+                const isClickable = (index <= store.highestStepReached || isNext) && !isActive;
 
                 return (
                   <button
@@ -130,9 +131,11 @@ export default function WizardShell() {
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                       isActive
                         ? 'bg-emerald-100 text-emerald-700'
-                        : isVisited
-                          ? 'bg-blue-50 text-blue-600 hover:bg-blue-100'
-                          : 'text-gray-400'
+                        : isNext
+                          ? 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'
+                          : isVisited
+                            ? 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                            : 'text-gray-400'
                     }`}
                     disabled={!isClickable}
                   >
@@ -140,9 +143,11 @@ export default function WizardShell() {
                       className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
                         isActive
                           ? 'bg-emerald-600 text-white'
-                          : isVisited
-                            ? 'bg-blue-500 text-white'
-                            : 'bg-gray-200 text-gray-400'
+                          : isNext
+                            ? 'bg-emerald-400 text-white'
+                            : isVisited
+                              ? 'bg-blue-500 text-white'
+                              : 'bg-gray-200 text-gray-400'
                       }`}
                     >
                       {index + 1}
