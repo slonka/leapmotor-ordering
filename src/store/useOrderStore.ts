@@ -158,7 +158,13 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
   },
 
   goToStep: (step) => {
-    set({ currentStep: Math.max(0, Math.min(step, WIZARD_STEPS.length - 1)) });
+    set((state) => {
+      const target = Math.max(0, Math.min(step, WIZARD_STEPS.length - 1));
+      return {
+        currentStep: target,
+        highestStepReached: Math.max(state.highestStepReached, target),
+      };
+    });
     window.scrollTo({ top: 0 });
   },
 
