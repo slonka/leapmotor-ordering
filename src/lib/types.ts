@@ -7,10 +7,13 @@ export type AccessoryId = 'rubber-mats' | 'velour-mats' | 'winter-tyres';
 export type BuyerType = 'individual' | 'company';
 
 export type FinancingOption =
+  | 'cash'
   | 'loan-50-50'
   | 'loan-0-percent'
   | 'loan-3x33'
   | 'leasing-classic';
+
+export type InsuranceChoice = 'dealer-1-percent' | 'own';
 
 export type PaymentMethod = 'request-contact' | 'card-payment';
 
@@ -47,6 +50,7 @@ export interface CompanyInfo {
 export interface FinancingDetails {
   option: FinancingOption;
   months?: number;
+  insurance?: InsuranceChoice;
 }
 
 export interface CardPayment {

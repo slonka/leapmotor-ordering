@@ -107,9 +107,16 @@ export default function StepSummary() {
         {store.financing && (
           <div className="p-4 flex justify-between">
             <span className="text-gray-500">{t('summary.financing')}</span>
-            <span className="font-medium">
-              {t(`financing.${store.financing.option}` as TranslationKey)}
-            </span>
+            <div className="text-right">
+              <span className="font-medium block">
+                {t(`financing.${store.financing.option}` as TranslationKey)}
+              </span>
+              {store.financing.insurance && (
+                <span className="text-sm text-gray-500">
+                  {t(`financing.insurance.${store.financing.insurance === 'dealer-1-percent' ? 'dealer' : 'own'}` as TranslationKey)}
+                </span>
+              )}
+            </div>
           </div>
         )}
 

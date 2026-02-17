@@ -90,7 +90,14 @@ const translations = {
 
     // Step 6: Financing
     'financing.title': 'Opcje finansowania',
+    'financing.cash': 'Gotówka',
+    'financing.cash.desc': 'Zapłać pełną kwotę bez finansowania',
     'financing.insurance': 'Pakiet ubezpieczeniowy za 1% wartości samochodu',
+    'financing.insurance.title': 'Ubezpieczenie',
+    'financing.insurance.dealer': 'Pakiet ubezpieczeniowy 1%',
+    'financing.insurance.dealer.desc': 'Ubezpieczenie za 1% wartości samochodu w pakiecie z dealerem',
+    'financing.insurance.own': 'Ubezpieczę się sam',
+    'financing.insurance.own.desc': 'Samodzielne zawarcie polisy ubezpieczeniowej',
     'financing.stellantis': 'Stellantis Financial Services',
     'financing.loan-50-50': 'Pożyczka 50/50',
     'financing.loan-50-50.desc': '50% wpłaty, 50% po 12 miesiącach, 0% odsetek, 0% prowizji',
@@ -240,7 +247,14 @@ const translations = {
 
     // Step 6: Financing
     'financing.title': 'Financing options',
+    'financing.cash': 'Cash',
+    'financing.cash.desc': 'Pay the full amount upfront, no financing',
     'financing.insurance': 'Insurance package for 1% of car value',
+    'financing.insurance.title': 'Insurance',
+    'financing.insurance.dealer': '1% insurance package',
+    'financing.insurance.dealer.desc': 'Insurance for 1% of car value bundled with the dealer',
+    'financing.insurance.own': "I'll insure myself",
+    'financing.insurance.own.desc': 'Arrange your own insurance policy independently',
     'financing.stellantis': 'Stellantis Financial Services',
     'financing.loan-50-50': 'Loan 50/50',
     'financing.loan-50-50.desc': '50% down, 50% after 12 months, 0% interest, 0% prep fee',

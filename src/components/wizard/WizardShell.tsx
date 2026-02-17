@@ -36,7 +36,7 @@ function canAdvance(step: number, store: ReturnType<typeof useOrderStore.getStat
       }
       return false;
     case 'financing':
-      return store.financing !== null;
+      return store.financing !== null && !!store.financing.option && !!store.financing.insurance;
     case 'payment':
       return store.paymentMethod !== null;
     case 'summary':
