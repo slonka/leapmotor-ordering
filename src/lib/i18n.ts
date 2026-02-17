@@ -17,6 +17,7 @@ const translations = {
     'step.buyer-type': 'Kupujący',
     'step.details': 'Dane',
     'step.financing': 'Finansowanie',
+    'step.review': 'Przegląd',
     'step.payment': 'Płatność',
     'step.summary': 'Podsumowanie',
 
@@ -112,7 +113,10 @@ const translations = {
     'financing.monthlyPayment': 'Rata miesięczna',
     'financing.selectMonths': 'Wybierz okres',
 
-    // Step 7: Payment
+    // Step 7: Review
+    'review.title': 'Sprawdź zamówienie',
+
+    // Step 8: Payment
     'payment.title': 'Płatność',
     'payment.requestContact': 'Poproś o kontakt',
     'payment.requestContact.desc': 'Dealer skontaktuje się z Tobą, aby omówić szczegóły zamówienia',
@@ -174,6 +178,7 @@ const translations = {
     'step.buyer-type': 'Buyer',
     'step.details': 'Details',
     'step.financing': 'Financing',
+    'step.review': 'Review',
     'step.payment': 'Payment',
     'step.summary': 'Summary',
 
@@ -269,7 +274,10 @@ const translations = {
     'financing.monthlyPayment': 'Monthly payment',
     'financing.selectMonths': 'Select period',
 
-    // Step 7: Payment
+    // Step 7: Review
+    'review.title': 'Review your order',
+
+    // Step 8: Payment
     'payment.title': 'Payment',
     'payment.requestContact': 'Request contact',
     'payment.requestContact.desc': 'A dealer will contact you to discuss order details',

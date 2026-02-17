@@ -105,5 +105,6 @@ export type WizardStep =
   | 'buyer-type'
   | 'details'
   | 'financing'
+  | 'review'
   | 'payment'
   | 'summary';

@@ -13,6 +13,7 @@ import StepBuyerType from './StepBuyerType';
 import StepPersonalInfo from './StepPersonalInfo';
 import StepCompanyInfo from './StepCompanyInfo';
 import StepFinancing from './StepFinancing';
+import StepReview from './StepReview';
 import StepPayment from './StepPayment';
 import StepSummary from './StepSummary';
 
@@ -38,6 +39,8 @@ function canAdvance(step: number, store: ReturnType<typeof useOrderStore.getStat
       return false;
     case 'financing':
       return store.financing !== null && !!store.financing.option && !!store.financing.insurance;
+    case 'review':
+      return true;
     case 'payment':
       return store.paymentMethod !== null;
     case 'summary':
@@ -78,6 +81,8 @@ export default function WizardShell() {
         return store.buyerType === 'company' ? <StepCompanyInfo /> : <StepPersonalInfo />;
       case 'financing':
         return <StepFinancing />;
+      case 'review':
+        return <StepReview />;
       case 'payment':
         return <StepPayment />;
       case 'summary':
@@ -113,6 +118,7 @@ export default function WizardShell() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
               {WIZARD_STEPS.map((step, index) => {
+                if (step === 'summary') return null;
                 const isActive = index === store.currentStep;
                 const isVisited = index <= store.highestStepReached && !isActive;
                 const isClickable = index <= store.highestStepReached && !isActive;

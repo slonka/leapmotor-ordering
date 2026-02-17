@@ -20,6 +20,7 @@ const WIZARD_STEPS: WizardStep[] = [
   'buyer-type',
   'details',
   'financing',
+  'review',
   'payment',
   'summary',
 ];
