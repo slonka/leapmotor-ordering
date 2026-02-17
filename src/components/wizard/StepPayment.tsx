@@ -120,7 +120,7 @@ export default function StepPayment() {
         <div className="animate-slide-up bg-white rounded-xl border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <h3 className="font-semibold text-gray-900">{t('payment.placeOrder')}</h3>
+              <h3 className="font-semibold text-gray-900">{t('payment.advance')}: {t('payment.advanceAmount')}</h3>
               <CardBrandIcon brand={brand} />
             </div>
             <Button variant="ghost" size="sm" onClick={fillDemoCard}>
