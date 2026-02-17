@@ -102,8 +102,8 @@ export default function WizardShell() {
             <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
               {WIZARD_STEPS.map((step, index) => {
                 const isActive = index === store.currentStep;
-                const isCompleted = index < store.currentStep;
-                const isClickable = index < store.currentStep;
+                const isVisited = index <= store.highestStepReached && !isActive;
+                const isClickable = index <= store.highestStepReached && !isActive;
 
                 return (
                   <button
@@ -112,28 +112,22 @@ export default function WizardShell() {
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                       isActive
                         ? 'bg-emerald-100 text-emerald-700'
-                        : isCompleted
-                          ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        : isVisited
+                          ? 'bg-blue-50 text-blue-600 hover:bg-blue-100'
                           : 'text-gray-400'
                     }`}
-                    disabled={!isClickable && !isActive}
+                    disabled={!isClickable}
                   >
                     <span
                       className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
                         isActive
                           ? 'bg-emerald-600 text-white'
-                          : isCompleted
-                            ? 'bg-gray-400 text-white'
+                          : isVisited
+                            ? 'bg-blue-500 text-white'
                             : 'bg-gray-200 text-gray-400'
                       }`}
                     >
-                      {isCompleted ? (
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      ) : (
-                        index + 1
-                      )}
+                      {index + 1}
                     </span>
                     <span className="hidden sm:inline">
                       {t(`step.${step}` as TranslationKey)}

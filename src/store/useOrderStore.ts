@@ -26,6 +26,7 @@ const WIZARD_STEPS: WizardStep[] = [
 
 interface OrderStore extends OrderState {
   currentStep: number;
+  highestStepReached: number;
   language: 'pl' | 'en';
   setLanguage: (lang: 'pl' | 'en') => void;
   setModel: (model: CarModel) => void;
@@ -90,6 +91,7 @@ const initialState: OrderState = {
 export const useOrderStore = create<OrderStore>((set, get) => ({
   ...initialState,
   currentStep: 0,
+  highestStepReached: 0,
   language: 'pl',
 
   setLanguage: (lang) => set({ language: lang }),
@@ -137,9 +139,13 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     })),
 
   nextStep: () =>
-    set((state) => ({
-      currentStep: Math.min(state.currentStep + 1, WIZARD_STEPS.length - 1),
-    })),
+    set((state) => {
+      const next = Math.min(state.currentStep + 1, WIZARD_STEPS.length - 1);
+      return {
+        currentStep: next,
+        highestStepReached: Math.max(state.highestStepReached, next),
+      };
+    }),
 
   prevStep: () =>
     set((state) => ({
@@ -151,7 +157,7 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
 
   getCurrentStepId: () => WIZARD_STEPS[get().currentStep],
 
-  reset: () => set({ ...initialState, currentStep: 0 }),
+  reset: () => set({ ...initialState, currentStep: 0, highestStepReached: 0 }),
 }));
 
 export { WIZARD_STEPS };
