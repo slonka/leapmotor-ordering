@@ -47,7 +47,7 @@ export default function StepCompanyInfo() {
     <div className="animate-fade-in max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('company.title')}</h2>
 
-      <div className="space-y-6">
+      <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
         <div>
           <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
             {t('company.representative')}
@@ -57,12 +57,14 @@ export default function StepCompanyInfo() {
               label={t('company.firstName')}
               value={companyInfo.representativeFirstName}
               onChange={(e) => setCompanyInfo({ representativeFirstName: e.target.value })}
+              name="firstName"
               required
             />
             <Input
               label={t('company.lastName')}
               value={companyInfo.representativeLastName}
               onChange={(e) => setCompanyInfo({ representativeLastName: e.target.value })}
+              name="lastName"
               required
             />
           </div>
@@ -73,6 +75,7 @@ export default function StepCompanyInfo() {
             label={t('company.nip')}
             value={companyInfo.nip}
             onChange={(e) => handleNipChange(e.target.value)}
+            name="nip"
             error={nipError}
             maxLength={10}
             inputMode="numeric"
@@ -98,6 +101,7 @@ export default function StepCompanyInfo() {
           label={t('company.companyName')}
           value={companyInfo.companyName}
           onChange={(e) => setCompanyInfo({ companyName: e.target.value })}
+          name="companyName"
           required
         />
 
@@ -105,6 +109,7 @@ export default function StepCompanyInfo() {
           label={t('company.street')}
           value={companyInfo.street}
           onChange={(e) => setCompanyInfo({ street: e.target.value })}
+          name="street"
           required
         />
 
@@ -113,12 +118,14 @@ export default function StepCompanyInfo() {
             label={t('company.city')}
             value={companyInfo.city}
             onChange={(e) => setCompanyInfo({ city: e.target.value })}
+            name="city"
             required
           />
           <Input
             label={t('company.postalCode')}
             value={companyInfo.postalCode}
             onChange={(e) => setCompanyInfo({ postalCode: e.target.value })}
+            name="postalCode"
             placeholder="00-000"
             required
           />
@@ -130,6 +137,7 @@ export default function StepCompanyInfo() {
             value={companyInfo.phone}
             onChange={(e) => setCompanyInfo({ phone: e.target.value })}
             type="tel"
+            name="phone"
             required
           />
           <Input
@@ -137,11 +145,12 @@ export default function StepCompanyInfo() {
             value={companyInfo.email}
             onChange={(e) => setCompanyInfo({ email: e.target.value })}
             type="email"
+            name="email"
             error={emailError}
             required
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 }

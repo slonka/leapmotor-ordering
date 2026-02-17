@@ -42,18 +42,20 @@ export default function StepPersonalInfo() {
     <div className="animate-fade-in max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('personal.title')}</h2>
 
-      <div className="space-y-6">
+      <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             label={t('personal.firstName')}
             value={personalInfo.firstName}
             onChange={(e) => setPersonalInfo({ firstName: e.target.value })}
+            name="firstName"
             required
           />
           <Input
             label={t('personal.lastName')}
             value={personalInfo.lastName}
             onChange={(e) => setPersonalInfo({ lastName: e.target.value })}
+            name="lastName"
             required
           />
         </div>
@@ -65,6 +67,7 @@ export default function StepPersonalInfo() {
             const val = e.target.value.replace(/\D/g, '').slice(0, 11);
             setPersonalInfo({ pesel: val });
           }}
+          name="pesel"
           error={peselError}
           maxLength={11}
           inputMode="numeric"
@@ -74,6 +77,7 @@ export default function StepPersonalInfo() {
           label={t('personal.street')}
           value={personalInfo.street}
           onChange={(e) => setPersonalInfo({ street: e.target.value })}
+          name="street"
           required
         />
 
@@ -82,12 +86,14 @@ export default function StepPersonalInfo() {
             label={t('personal.city')}
             value={personalInfo.city}
             onChange={(e) => setPersonalInfo({ city: e.target.value })}
+            name="city"
             required
           />
           <Input
             label={t('personal.postalCode')}
             value={personalInfo.postalCode}
             onChange={(e) => setPersonalInfo({ postalCode: e.target.value })}
+            name="postalCode"
             placeholder="00-000"
             required
           />
@@ -99,6 +105,7 @@ export default function StepPersonalInfo() {
             value={personalInfo.phone}
             onChange={(e) => setPersonalInfo({ phone: e.target.value })}
             type="tel"
+            name="phone"
             required
           />
           <Input
@@ -106,6 +113,7 @@ export default function StepPersonalInfo() {
             value={personalInfo.email}
             onChange={(e) => setPersonalInfo({ email: e.target.value })}
             type="email"
+            name="email"
             error={emailError}
             required
           />
@@ -155,7 +163,7 @@ export default function StepPersonalInfo() {
         <Button variant="outline" onClick={addCoOwner}>
           {t('personal.addCoOwner')}
         </Button>
-      </div>
+      </form>
     </div>
   );
 }
