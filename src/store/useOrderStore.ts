@@ -139,22 +139,28 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
       cardPayment: { ...state.cardPayment, ...payment },
     })),
 
-  nextStep: () =>
+  nextStep: () => {
     set((state) => {
       const next = Math.min(state.currentStep + 1, WIZARD_STEPS.length - 1);
       return {
         currentStep: next,
         highestStepReached: Math.max(state.highestStepReached, next),
       };
-    }),
+    });
+    window.scrollTo({ top: 0 });
+  },
 
-  prevStep: () =>
+  prevStep: () => {
     set((state) => ({
       currentStep: Math.max(state.currentStep - 1, 0),
-    })),
+    }));
+    window.scrollTo({ top: 0 });
+  },
 
-  goToStep: (step) =>
-    set({ currentStep: Math.max(0, Math.min(step, WIZARD_STEPS.length - 1)) }),
+  goToStep: (step) => {
+    set({ currentStep: Math.max(0, Math.min(step, WIZARD_STEPS.length - 1)) });
+    window.scrollTo({ top: 0 });
+  },
 
   getCurrentStepId: () => WIZARD_STEPS[get().currentStep],
 
